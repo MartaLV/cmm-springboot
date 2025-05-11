@@ -1,5 +1,7 @@
 package ceu.biolab.cmm.gcms.dto;
 
+import ceu.biolab.cmm.gcms.domain.ColumnType;
+import ceu.biolab.cmm.gcms.domain.DerivationMethod;
 import ceu.biolab.cmm.gcms.domain.GcmsSpectra;
 import ceu.biolab.cmm.shared.domain.MzToleranceMode;
 
@@ -7,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class GcmsSearchRequestDTO {
+public class GCMSSearchRequestDTO {
     //private List<Double> mzValues = new ArrayList<>();
     //private List<Double> intensityValues = new ArrayList<>();
 
@@ -18,19 +20,21 @@ public class GcmsSearchRequestDTO {
     private double retentionIndex;
     private double retentionIndexTolerance;
 
-    private final String derivationMethod = "methyl-chloroformiates"; //TODO crear enumerado aunq solo usemos este
-    private String columnType; //TODO crear enumerado???
+    private DerivationMethod derivationMethod;
+    private ColumnType columnType;
 
-    public GcmsSearchRequestDTO(List<GcmsSpectra> gcmsSpectrum, double mzTolerance,
+
+    public GCMSSearchRequestDTO(List<GcmsSpectra> gcmsSpectrum, double mzTolerance,
                                 MzToleranceMode mzToleranceMode, double retentionIndex, double retentionIndexTolerance,
-                                String columnType) {
+                                DerivationMethod derivationMethod, ColumnType columnType) {
         this.gcmsSpectrum = gcmsSpectrum != null ? gcmsSpectrum : new ArrayList<>();
         this.mzTolerance = mzTolerance;
         //TODO Es alguno es concreto?? --> ppm, mda
         this.mzToleranceMode = mzToleranceMode != null ? mzToleranceMode : MzToleranceMode.PPM;
         this.retentionIndex = retentionIndex;
         this.retentionIndexTolerance = retentionIndexTolerance;
-        this.columnType = columnType;
+        this.derivationMethod = derivationMethod != null ? derivationMethod : derivationMethod.METHYL_CHLOROFORMIATES;
+        this.columnType = columnType != null ? columnType : columnType.UNKNOWN;
     }
 
     public List<GcmsSpectra> getGcmsSpectrum() {
@@ -81,23 +85,12 @@ public class GcmsSearchRequestDTO {
         this.retentionIndexTolerance = retentionIndexTolerance;
     }
 
-    public String getColumnType() {
-        return columnType;
-    }
-
-    public void setColumnType(String columnType) {
-        this.columnType = columnType;
-    }
-
-    public String getDerivationMethod() {
-        return derivationMethod;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        GcmsSearchRequestDTO that = (GcmsSearchRequestDTO) o;
+        GCMSSearchRequestDTO that = (GCMSSearchRequestDTO) o;
         return Double.compare(mzTolerance, that.mzTolerance) == 0 &&
                Double.compare(retentionIndex, that.retentionIndex) == 0 &&
                Double.compare(retentionIndexTolerance, that.retentionIndexTolerance) == 0 &&

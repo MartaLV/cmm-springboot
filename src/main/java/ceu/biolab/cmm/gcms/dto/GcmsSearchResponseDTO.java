@@ -1,22 +1,22 @@
 package ceu.biolab.cmm.gcms.dto;
 
-import ceu.biolab.cmm.gcms.domain.GcmsFeatures;
+import ceu.biolab.cmm.gcms.domain.GCMSFeature;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GcmsSearchResponseDTO {
-    private List<GcmsFeatures> gcmsFeatures;
+    private List<GCMSFeature> gcmsFeatures;
 
-    public GcmsSearchResponseDTO(List<GcmsFeatures> gcmsFeatures) {
+    public GcmsSearchResponseDTO(List<GCMSFeature> gcmsFeatures) {
         this.gcmsFeatures = gcmsFeatures != null ? gcmsFeatures : new ArrayList<>();
     }
 
-    public List<GcmsFeatures> getGcmsFeatures() {
+    public List<GCMSFeature> getGcmsFeatures() {
         return gcmsFeatures;
     }
 
-    public void setGcmsFeatures(List<GcmsFeatures> gcmsFeatures) {
+    public void setGcmsFeatures(List<GCMSFeature> gcmsFeatures) {
         this.gcmsFeatures = gcmsFeatures != null ? gcmsFeatures : new ArrayList<>();
     }
 
