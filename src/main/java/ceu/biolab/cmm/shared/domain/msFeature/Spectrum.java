@@ -1,16 +1,16 @@
-package ceu.biolab.cmm.gcms.domain;
+package ceu.biolab.cmm.shared.domain.msFeature;
 
-import ceu.biolab.cmm.shared.domain.msFeature.IMSFeature;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class GcmsSpectra /*implements IMSFeature*/ {
+@Data
+public class Spectrum /*implements IMSFeature*/ {
     private List<Double> mzValues;
     private List<Double> intensityValues;
 
-    public GcmsSpectra(List<Double> mzValues, List<Double> intensityValues) {
+    public Spectrum(List<Double> mzValues, List<Double> intensityValues) {
         this.mzValues = mzValues != null ? mzValues : new ArrayList<>();
         this.intensityValues = intensityValues != null ? intensityValues : new ArrayList<>();
     }

@@ -12,12 +12,29 @@ public class GCMSAnnotation extends Annotation {
     private double deltaRI;
     private Optional<Double> deltaRT;
 
-    public GCMSAnnotation(Compound compound, GCMSCompound gcmsCompound,
+    /*public GCMSAnnotation(Compound compound, GCMSCompound gcmsCompound,
                           double msmsCosineScore, double deltaRI, Optional<Double> deltaRT) {
         super(compound);
         this.gcmsCompound = gcmsCompound;
         this.msmsCosineScore = msmsCosineScore;
         this.deltaRI = deltaRI;
         this.deltaRT = deltaRT;
+    }*/
+    public GCMSAnnotation(Compound compound, GCMSCompound gcmsCompound,
+                          double msmsCosineScore, double deltaRI) {
+        super(compound);
+        this.gcmsCompound = gcmsCompound;
+        this.msmsCosineScore = msmsCosineScore;
+        this.deltaRI = deltaRI;
+        this.deltaRT = Optional.empty();
     }
+    public GCMSAnnotation(Compound compound, GCMSCompound gcmsCompound,
+                          double msmsCosineScore, double deltaRI, double deltaRT) {
+        super(compound);
+        this.gcmsCompound = gcmsCompound;
+        this.msmsCosineScore = msmsCosineScore;
+        this.deltaRI = deltaRI;
+        this.deltaRT = Optional.of(deltaRT);
+    }
+
 }

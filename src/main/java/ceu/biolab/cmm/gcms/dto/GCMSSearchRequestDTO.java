@@ -1,47 +1,44 @@
 package ceu.biolab.cmm.gcms.dto;
 
 import ceu.biolab.cmm.gcms.domain.ColumnType;
-import ceu.biolab.cmm.gcms.domain.DerivationMethod;
-import ceu.biolab.cmm.gcms.domain.GcmsSpectra;
+import ceu.biolab.cmm.gcms.domain.DerivatizationMethod;
+import ceu.biolab.cmm.shared.domain.msFeature.Spectrum;
 import ceu.biolab.cmm.shared.domain.MzToleranceMode;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
+// TODO LOMBOK
 public class GCMSSearchRequestDTO {
-    //private List<Double> mzValues = new ArrayList<>();
-    //private List<Double> intensityValues = new ArrayList<>();
 
-    private List<GcmsSpectra> gcmsSpectrum; //Group of Spectra
+    private List<Spectrum> gcmsSpectrum; //Group of Spectra
 
     private double mzTolerance; //Units Da_or_ppm
     private MzToleranceMode mzToleranceMode;
     private double retentionIndex;
     private double retentionIndexTolerance;
 
-    private DerivationMethod derivationMethod;
+    private DerivatizationMethod derivatizationMethod;
     private ColumnType columnType;
 
 
-    public GCMSSearchRequestDTO(List<GcmsSpectra> gcmsSpectrum, double mzTolerance,
+    public GCMSSearchRequestDTO(List<Spectrum> gcmsSpectrum, double mzTolerance,
                                 MzToleranceMode mzToleranceMode, double retentionIndex, double retentionIndexTolerance,
-                                DerivationMethod derivationMethod, ColumnType columnType) {
+                                DerivatizationMethod derivatizationMethod, ColumnType columnType) {
         this.gcmsSpectrum = gcmsSpectrum != null ? gcmsSpectrum : new ArrayList<>();
         this.mzTolerance = mzTolerance;
-        //TODO Es alguno es concreto?? --> ppm, mda
         this.mzToleranceMode = mzToleranceMode != null ? mzToleranceMode : MzToleranceMode.PPM;
         this.retentionIndex = retentionIndex;
         this.retentionIndexTolerance = retentionIndexTolerance;
-        this.derivationMethod = derivationMethod != null ? derivationMethod : derivationMethod.METHYL_CHLOROFORMIATES;
-        this.columnType = columnType != null ? columnType : columnType.UNKNOWN;
+        this.derivatizationMethod = derivatizationMethod != null ? derivatizationMethod : derivatizationMethod.METHYL_CHLOROFORMATES;
+        this.columnType = columnType != null ? columnType : columnType.SEMISTANDARD_NON_POLAR;
     }
 
-    public List<GcmsSpectra> getGcmsSpectrum() {
+    public List<Spectrum> getGcmsSpectrum() {
         return gcmsSpectrum;
     }
 
-    public void setGcmsSpectrum(List<GcmsSpectra> gcmsSpectrum) {
+    public void setGcmsSpectrum(List<Spectrum> gcmsSpectrum) {
         this.gcmsSpectrum = gcmsSpectrum != null ? gcmsSpectrum : new ArrayList<>();
     }
 
@@ -96,14 +93,14 @@ public class GCMSSearchRequestDTO {
                Double.compare(retentionIndexTolerance, that.retentionIndexTolerance) == 0 &&
                Objects.equals(gcmsSpectrum, that.gcmsSpectrum) &&
                mzToleranceMode == that.mzToleranceMode &&
-               Objects.equals(derivationMethod, that.derivationMethod) &&
+               Objects.equals(derivatizationMethod, that.derivatizationMethod) &&
                Objects.equals(columnType, that.columnType);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(gcmsSpectrum, mzTolerance, mzToleranceMode, retentionIndex,
-                retentionIndexTolerance, derivationMethod, columnType);
+                retentionIndexTolerance, derivatizationMethod, columnType);
     }
 
     @Override
@@ -114,7 +111,7 @@ public class GCMSSearchRequestDTO {
                 ", mzToleranceMode=" + mzToleranceMode +
                 ", retentionIndex=" + retentionIndex +
                 ", retentionIndexTolerance=" + retentionIndexTolerance +
-                ", derivationMethod='" + derivationMethod + '\'' +
+                ", derivationMethod='" + derivatizationMethod + '\'' +
                 ", columnType='" + columnType + '\'' +
                 '}';
     }
